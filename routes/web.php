@@ -35,4 +35,11 @@ Route::group(['middleware' => 'auth-api'], function () {
 		'as' => 'logout'
 	]);
 
+	Route::group(['prefix' => 'user'], function (){
+		Route::get('show-all', [
+			'uses' => 'CommonController@showAll',
+			'as' => 'user.show-all'
+		]);
+	});
+
 });

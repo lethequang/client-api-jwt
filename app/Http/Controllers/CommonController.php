@@ -63,6 +63,11 @@ class CommonController extends Controller
 		return view('profile', $user);
 	}
 
+	public function showAll(Request $request) {
+    	$params = $request->all();
+		$token = Session('jwt')['access_token'];
+		$result = $this->serverAPI->getListUser($params, $token);
+	}
 
 	public function getHome() {
     	return view('home');

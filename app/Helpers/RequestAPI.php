@@ -66,7 +66,7 @@ class RequestAPI
 	 */
 	public function request($method, $url, $data) {
 		curl_setopt($this->handle, CURLOPT_URL, $url);
-		curl_setopt($this->handle, CURLOPT_POSTFIELDS, json_encode($data));
+		curl_setopt($this->handle, CURLOPT_POSTFIELDS, $this->formatParams($data));
 		curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, $method);
 
 		$response = curl_exec($this->handle);
@@ -89,6 +89,15 @@ class RequestAPI
 	 */
 	public function formatResult($res) {
 		return json_decode($res, TRUE);
+	}
+
+
+	/**
+	 * @param $req
+	 * @return string
+	 */
+	public function formatParams($req) {
+		return json_encode($req);
 	}
 
 }

@@ -32,17 +32,28 @@ class AuthenticateFromApi
      */
     public function handle($request, Closure $next)
     {
+		/*
+		 * Redirect to login
+		 * In case: Session is not found
+		 */
 		if (!Session('jwt')) {
 			return redirect('/');
 		}
+
+		// Get access token from session
 		$token = Session('jwt')['access_token'];
 		$currentAuth = $this->serverAPI->getAuthInfo($token);
 
+		/*
+		 * Remove session and re-login
+		 * In case: Token invalid, Token expired,...
+		 */
 		if ($currentAuth['code'] === 401) {
 			Session()->forget('jwt');
 			return redirect('/');
 		}
 
+		// Share user auth to all views
 		\View::share('user', $currentAuth['data']);
 
         return $next($request);

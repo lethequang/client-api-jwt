@@ -25,6 +25,12 @@ class ServerAPI
 		$this->requestApi = $requestAPI;
 	}
 
+
+	/**
+	 * Prepare URL for request
+	 * @param $path
+	 * @return string
+	 */
 	public function requestUrl($path) {
     	return config('params.server-api') . $path ;
 	}
@@ -46,6 +52,12 @@ class ServerAPI
 
 	public function refresh($token) {
 		$response = $this->requestApi->callAPI('POST', $this->requestUrl('/auth/refresh'),false, $token);
+		return $response;
+	}
+
+	public function getListUser($params, $token) {
+		$response = $this->requestApi->callAPI('GET', $this->requestUrl('/user/show-all'), $params, $token);
+		dd($response);
 		return $response;
 	}
 }
