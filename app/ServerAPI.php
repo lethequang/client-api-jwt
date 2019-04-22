@@ -57,7 +57,10 @@ class ServerAPI
 
 	public function getListUser($params, $token) {
 		$response = $this->requestApi->callAPI('GET', $this->requestUrl('/user/show-all'), $params, $token);
-		dd($response);
+		return $response;
+	}
+	public function removeUser($id, $token) {
+		$response = $this->requestApi->callAPI('DELETE', $this->requestUrl('/user/remove/') . $id, false, $token);
 		return $response;
 	}
 }

@@ -63,10 +63,24 @@ class CommonController extends Controller
 		return view('profile', $user);
 	}
 
-	public function showAll(Request $request) {
-    	$params = $request->all();
+	public function showAll() {
+    	return view('list-user');
+	}
+
+	public function ajaxListUser(Request $request) {
+		$params = $request->all();
 		$token = Session('jwt')['access_token'];
 		$result = $this->serverAPI->getListUser($params, $token);
+		return response()->json($result['data']);
+	}
+
+	public function removeUser($id) {
+		$token = Session('jwt')['access_token'];
+		$result = $this->serverAPI->removeUser($id, $token);
+		if ($result['code'] !== 200) {
+			return redirect()->back()->with('status', 'Delete Fail');
+		}
+		return redirect()->back()->with('status', 'Delete Successfully');
 	}
 
 	public function getHome() {

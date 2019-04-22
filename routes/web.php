@@ -40,6 +40,14 @@ Route::group(['middleware' => 'auth-api'], function () {
 			'uses' => 'CommonController@showAll',
 			'as' => 'user.show-all'
 		]);
+		Route::get('ajax-data', [
+			'uses' => 'CommonController@ajaxListUser',
+			'as' => 'user.ajax-data'
+		]);
+		Route::get('remove/{id}', [
+			'uses' => 'CommonController@removeUser',
+			'as' => 'user.remove'
+		]);
 	});
 
 });

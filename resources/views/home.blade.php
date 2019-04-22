@@ -9,12 +9,10 @@
                 <div class="btn-toolbar btn-lg">
                     <a href="{{ route('getProfile') }}">Profile</a>
                 </div>
+                <div class="btn-toolbar btn-lg">
+                    <a href="{{ route('user.show-all') }}">List User</a>
+                </div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
                     You are logged in!
                 </div>

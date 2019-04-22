@@ -37,13 +37,13 @@ class RequestAPI
 	/**
 	 * @param $method
 	 * @param $url
-	 * @param $data
+	 * @param $params
 	 * @param bool $token
 	 * @return mixed
 	 */
-	public function callAPI($method, $url, $data, $token = false) {
+	public function callAPI($method, $url, $params, $token = false) {
 		$this->setHttpHeaders($token);
-		return $this->request($method, $url, $data);
+		return $this->request($method, $url, $params);
 	}
 
 
@@ -61,12 +61,12 @@ class RequestAPI
 	/**
 	 * @param $method
 	 * @param $url
-	 * @param $data
+	 * @param $params
 	 * @return mixed
 	 */
-	public function request($method, $url, $data) {
+	public function request($method, $url, $params) {
 		curl_setopt($this->handle, CURLOPT_URL, $url);
-		curl_setopt($this->handle, CURLOPT_POSTFIELDS, $this->formatParams($data));
+		curl_setopt($this->handle, CURLOPT_POSTFIELDS, $this->formatParams($params));
 		curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, $method);
 
 		$response = curl_exec($this->handle);
