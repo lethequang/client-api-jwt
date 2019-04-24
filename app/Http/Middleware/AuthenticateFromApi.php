@@ -54,7 +54,7 @@ class AuthenticateFromApi
 		}
 
 		// Share user auth to all views
-		\View::share('user', $currentAuth['data']);
+		\View::share('currentAuth', $currentAuth['data']);
 
         return $next($request);
     }

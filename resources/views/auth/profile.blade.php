@@ -8,9 +8,9 @@
                 <div class="card-header">Profile</div>
                 <div class="card-body">
                     <ul>
-                        <li>Email: {{ $user['email'] }}</li>
-                        <li>Full name: {{ $user['full_name'] }}</li>
-                        <li>Phone: {{ $user['phone'] }}</li>
+                        <li>Email: {{ $currentAuth['email'] }}</li>
+                        <li>Full name: {{ $currentAuth['full_name'] }}</li>
+                        <li>Phone: {{ $currentAuth['phone'] }}</li>
                     </ul>
                 </div>
             </div>

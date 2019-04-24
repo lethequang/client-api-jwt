@@ -10,43 +10,59 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'CommonController@getLogin');
+Route::get('/', 'AuthController@getLogin');
 
-Route::get('/login', 'CommonController@getlogin');
+Route::get('/login', 'AuthController@getlogin');
 Route::post('/login', [
-	'uses' => 'CommonController@postLogin',
+	'uses' => 'AuthController@postLogin',
 	'as' => 'login'
 ]);
 
 Route::group(['middleware' => 'auth-api'], function () {
 
 	Route::get('home', [
-		'uses' => 'CommonController@getHome',
+		'uses' => 'AuthController@getHome',
 		'as' => 'getHome'
 	]);
 
 	Route::get('profile', [
-		'uses' => 'CommonController@getProfile',
+		'uses' => 'AuthController@getProfile',
 		'as' => 'getProfile'
 	]);
 
 	Route::get('/logout', [
-		'uses' => 'CommonController@logout',
+		'uses' => 'AuthController@logout',
 		'as' => 'logout'
 	]);
 
 	Route::group(['prefix' => 'user'], function (){
 		Route::get('show-all', [
-			'uses' => 'CommonController@showAll',
+			'uses' => 'UserController@showAll',
 			'as' => 'user.show-all'
 		]);
 		Route::get('ajax-data', [
-			'uses' => 'CommonController@ajaxListUser',
+			'uses' => 'UserController@ajaxData',
 			'as' => 'user.ajax-data'
 		]);
-		Route::get('remove/{id}', [
-			'uses' => 'CommonController@removeUser',
-			'as' => 'user.remove'
+		Route::post('delete/{id}', [
+			'uses' => 'UserController@destroy',
+			'as' => 'user.delete'
+		]);
+		Route::get('/create', [
+			'uses' => 'UserController@create',
+			'as' => 'user.create'
+		]);
+		Route::post('/create',[
+			'uses' => 'UserController@store',
+			'as' => 'user.store'
+		]);
+		Route::get('/edit/{id}',[
+			'uses' => 'UserController@edit',
+			'as' => 'user.edit'
+		]);
+		Route::post('/edit/{id}',[
+			'uses' => 'UserController@update',
+			'as' => 'user.update'
 		]);
 	});
 

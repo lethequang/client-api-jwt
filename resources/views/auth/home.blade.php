@@ -5,15 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-                <div class="btn-toolbar btn-lg">
-                    <a href="{{ route('getProfile') }}">Profile</a>
-                </div>
-                <div class="btn-toolbar btn-lg">
-                    <a href="{{ route('user.show-all') }}">List User</a>
+                <div class="card-header">
                 </div>
                 <div class="card-body">
-
                     You are logged in!
                 </div>
             </div>
