@@ -25,6 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+                @if(isset($currentAuth))
                 <div class="row">
                     <div class="navbar-brand">
                         <a class="btn btn-primary" href="{{ url('/') }}">HOME</a>
@@ -36,6 +37,7 @@
                         <a class="btn btn-success" href="{{ route('user.show-all') }}">List User</a>
                     </div>
                 </div>
+                @endif
                 <div class="row">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
